@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>ToDoの一覧</h1>
+<a href="{% url 'todo:create' %}">追加</a>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">ToDo</th>
+      <th scope="col">作成日時</th>
+      <th scope="col">更新日時</th>
+      <th scope="col">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+    <tr>
+      <td scope="row"><a href="{% url 'todo:detail' pk=item.id %}">{{ item.id }}</a></td>
+      <td>{{ item.todo }}</td>
+      <td>{{ item.created_at }}</td>
+      <td>{{ item.updated_at }}</td>
+      <td>
+        <a href="{% url 'todo:update' pk=item.id %}">修正</a>
+        <a href="{% url 'todo:delete' pk=item.id %}">削除</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{%endblock%}
