@@ -1,89 +1,206 @@
-html, body {
-	height: 100%;
-  }
-  
-  html {
-	background: #eee;
-  }
-  
-  body {
-	display: flex;
-	justify-content: right;
-	align-items: right;
-  }
-  
-  .box {
-	width: 520px;
-	height: 600px;
-	border-radius: 5px;
-	box-shadow: 0 2px 30px rgba(black, .2);
-	background: lighten(#f0f4c3, 10%);
-	position: relative;
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+* {
+	margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Exo', sans-serif;
+}
+
+table {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+th, td {
+	padding:10px 15px;
+}
+
+.context {
+	width: 100%;
+    position: absolute;
+	align-items: center;
+    top: 50px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+	z-index: 10;
+}
+
+.context a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.area {
+    background: #4e54c8;  
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    width: 100%;
+    height:100vh;
+}
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+
+.circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+/*== ボタン共通設定 */
+.btn {
+    /*アニメーションの起点とするためrelativeを指定*/
+    position: relative;
 	overflow: hidden;
-	transform: translate3d(0, 0, 0);
-  }
-  
-  .wave {
-	opacity: .4;
-	position: absolute;
-	top: 3%;
-	left: 50%;
-	background: rgba(0, 170, 255, 0.911);
-	width: 700px;
-	height: 700px;
-	margin-left: -250px;
-	margin-top: -250px;
-	transform-origin: 50% 48%;
-	border-radius: 43%;
-	animation: drift 7000ms infinite linear;
-  }
-  
-  .wave.-three {
-	animation: drift 8000ms infinite linear;
-  }
-  
-  .wave.-two {
-	animation: drift 9000ms infinite linear;
-	opacity: .1;
-	background: rgb(102, 164, 180);
-  }
-  
-  .box:after {
+    /*ボタンの形状*/
+	text-decoration: none;
+	display: inline-block;
+	background-color: #171E9C;
+    border: 1px solid #555;/* ボーダーの色と太さ */
+    padding: 10px 30px;
+	margin: 20px 0px;
+    text-align: center;
+    outline: none;
+    /*アニメーションの指定*/   
+    transition: ease .2s;
+}
+
+/*ボタン内spanの形状*/
+.btn span {
+	position: relative;
+	z-index: 3;/*z-indexの数値をあげて文字を背景よりも手前に表示*/
+	color:#fff;
+}
+
+.btn:hover span{
+	color:#333;
+}
+
+/*== 背景が流れる（右から左） */
+.btn-right:before {
 	content: '';
-	display: block;
-	left: 0;
+	/*絶対配置で位置を指定*/
+	position: absolute;
 	top: 0;
+	left: 0;
+	z-index: 2;
+    /*色や形状*/
+	background:  #9B9FE9;/*背景色*/
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
-	z-index: 11;
-	transform: translate3d(0, 0, 0);
-  }
-  
-  .title {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	z-index: 1;
-	line-height: 300px;
-	text-align: right;
-	transform: translate3d(0, 0, 0);
-	color: white;
-	text-transform: uppercase;
-	font-family: 'Playfair Display', serif;
-	letter-spacing: .4em;
-	font-size: 24px;
-	text-shadow: 0 1px 0 rgba(black, .1);
-	text-indent: .3em;
-  }
-  @keyframes drift {
-	from { transform: rotate(0deg); }
-	from { transform: rotate(360deg); }
-  }
-h1 {
-	color: cadetblue;
-	padding: 0.5em 0;
-	border-top: solid 3px #364e96;
-	border-bottom: solid 3px #364e96;
+    /*アニメーション*/
+	transition: transform .6s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+	transform: scale(0, 1);
+	transform-origin: left top;
+}
+
+/*hoverした際の形状*/
+.btn-right:hover:before{
+	transform-origin:right top;
+	transform:scale(1, 1);
+}
+
+@keyframes animate {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
 }
